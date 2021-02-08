@@ -1,23 +1,23 @@
 import pygame
 from affichage import Affichage
 from player import Player
+from flag import Flag
 
 screen = pygame.display.set_mode((720, 700))
 pygame.display.set_caption("Labyrinthe")
 
-bg = pygame.image.load("/home/pi/Desktop/python/jeux/labirinthe/bg.png")
+bg = pygame.image.load("bg.png")
 bg = pygame.transform.scale(bg, (1800, 1800))
-box = pygame.image.load("/home/pi/Desktop/python/jeux/labirinthe/black-check-box.png")
+box = pygame.image.load("black-check-box.png")
 box = pygame.transform.scale(box, (50, 50))
-minus = pygame.image.load("/home/pi/Desktop/python/jeux/labirinthe/minus.png")
+minus = pygame.image.load("minus.png")
 minus = pygame.transform.scale(minus, (50, 50))
-blank = pygame.image.load("/home/pi/Desktop/python/jeux/labirinthe/blank.png")
+blank = pygame.image.load("blank.png")
 blank = pygame.transform.scale(blank, (50, 50))
-flag = pygame.image.load("/home/pi/Desktop/python/jeux/labirinthe/flag.png")
 
-
+flag = Flag()
 affichage = Affichage(screen, box, blank)
-player = Player()
+player = Player(screen)
 
 i = 0
 run = True
@@ -26,11 +26,13 @@ run = True
 while run:
 
     screen.blit(bg, (-250, -350))
-    screen.blit(minus, (50,0))
+    #screen.blit(minus, (50,0))
     screen.blit(player.image, player.rect )
-    screen.blit(flag, (110, 160))
+    screen.blit(flag.image,flag.rect )
 
     Affichage(screen, box, blank)
+
+    player.Win()
     
 
 
@@ -43,15 +45,23 @@ while run:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 if not player.rect.y - 50 <= 100:
-                    player.move_up()
+                    while not player.rect.y - 50 <= 100:
+                        player.move_up()
+                        continue
             elif event.key == pygame.K_DOWN:
                 if not player.rect.y + 50 >= 600:
-                    player.move_down()
+                    while not player.rect.y + 50 >= 600:
+                        player.move_down()
+                        continue
             elif event.key == pygame.K_RIGHT:
                 if not player.rect.x + 50 >= 600:
-                    player.move_right()
+                    while not player.rect.x + 50 >= 600:
+                        player.move_right()
+                        continue
             elif event.key == pygame.K_LEFT:
                 if not player.rect.x + 50 <= 150:
-                    player.move_left()
+                    while not player.rect.x + 50 <= 150:
+                        player.move_left()
+                        continue
 
  

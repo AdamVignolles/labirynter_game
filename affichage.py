@@ -67,4 +67,6 @@ class Affichage():
             screen.blit(blank, (self.i,450))
             screen.blit(blank, (self.i,500))
             screen.blit(blank, (self.i,550))
+    
+    
         
