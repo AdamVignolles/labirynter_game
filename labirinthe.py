@@ -26,7 +26,6 @@ run = True
 while run:
 
     screen.blit(bg, (-250, -350))
-    #screen.blit(minus, (50,0))
     minus.start(screen)
     screen.blit(player.image, player.rect )
     flag.start(screen)
