@@ -2,6 +2,7 @@ import pygame
 from affichage import Affichage
 from player import Player
 from flag import Flag
+from minus import Minus
 
 screen = pygame.display.set_mode((720, 700))
 pygame.display.set_caption("Labyrinthe")
@@ -10,14 +11,13 @@ bg = pygame.image.load("bg.png")
 bg = pygame.transform.scale(bg, (1800, 1800))
 box = pygame.image.load("black-check-box.png")
 box = pygame.transform.scale(box, (50, 50))
-minus = pygame.image.load("minus.png")
-minus = pygame.transform.scale(minus, (50, 50))
 blank = pygame.image.load("blank.png")
 blank = pygame.transform.scale(blank, (50, 50))
 
 flag = Flag()
 affichage = Affichage(screen, box, blank)
 player = Player(screen)
+minus = Minus()
 
 i = 0
 run = True
@@ -27,8 +27,9 @@ while run:
 
     screen.blit(bg, (-250, -350))
     #screen.blit(minus, (50,0))
+    minus.start(screen)
     screen.blit(player.image, player.rect )
-    screen.blit(flag.image,flag.rect )
+    flag.start(screen)
 
     Affichage(screen, box, blank)
 
