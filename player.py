@@ -33,9 +33,9 @@ class Player(pygame.sprite.Sprite):
 
 
     def move_right(self):
-        if not self.rect.colliderect(self.minus.rect):
-            self.rect.x += self.velocity
-            if self.rect.colliderect(self.flag.rect):
+        self.rect.x += self.velocity
+        if not self.rect.colliderect(self.minus):
+            if self.rect.colliderect(self.flag):
                 self.win = True
                 self.Win()
             else:
@@ -45,9 +45,9 @@ class Player(pygame.sprite.Sprite):
             
         
     def move_left(self):
+        self.rect.x -= self.velocity
         if  not self.rect.colliderect(self.minus):
-            self.rect.x -= self.velocity
-            if self.rect.colliderect(self.flag.rect):
+            if self.rect.colliderect(self.flag):
                 self.win = True
                 self.Win()
             else:
@@ -57,23 +57,27 @@ class Player(pygame.sprite.Sprite):
            
         
     def move_up(self):
-        if not self.rect.colliderect(self.minus.rect):
-            self.rect.y -= self.velocity
-            if self.rect.colliderect(self.flag.rect):
+        self.rect.y -= self.velocity
+        if not self.rect.colliderect(self.minus):
+            if self.rect.colliderect(self.flag):
                 self.win = True
                 self.Win()
             else:
                 self.win = False
+        else:
+            self.rect.y += self.velocity * 2
                 
             
                 
                 
 
     def move_down(self):
-        if  not self.rect.colliderect(self.minus.rect):
-            self.rect.y += self.velocity
-            if self.rect.colliderect(self.flag.rect):
+        self.rect.y += self.velocity
+        if  not self.rect.colliderect(self.minus):
+            if self.rect.colliderect(self.flag):
                 self.win = True
                 self.Win()
             else:
                 self.win = False
+        else:
+            self.move_up()

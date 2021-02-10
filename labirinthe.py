@@ -62,6 +62,6 @@ while run:
                 if not player.rect.x + 50 <= 150:
                     while not player.rect.x + 50 <= 150:
                         player.move_left()
-                        continue
+                        continue 
 
  
