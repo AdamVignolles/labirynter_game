@@ -28,56 +28,42 @@ class Player(pygame.sprite.Sprite):
             score_text = self.font.render("WIN", True, (0, 0, 0))
             self.screen.blit(score_text, (20, 20))
 
-    def check_collision(self, sprite):
-        return pygame.sprite.spritecollide(sprite, False)
-
+    def check_collision(self, sprite, group):
+        return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def move_right(self):
         self.rect.x += self.velocity
-        if not self.rect.colliderect(self.minus):
-            if self.rect.colliderect(self.flag):
-                self.win = True
-                self.Win()
-            else:
-                self.win = False
+        if self.rect.colliderect(self.flag):
+            self.win = True
+            self.Win()
         else:
-            self.move_left()
+            self.win = False
             
         
     def move_left(self):
         self.rect.x -= self.velocity
-        if  not self.rect.colliderect(self.minus):
-            if self.rect.colliderect(self.flag):
-                self.win = True
-                self.Win()
-            else:
-                self.win = False
+        if self.rect.colliderect(self.flag):
+            self.win = True
+            self.Win()
         else:
-            self.move_right()
+            self.win = False
+        
            
         
     def move_up(self):
         self.rect.y -= self.velocity
-        if not self.rect.colliderect(self.minus):
-            if self.rect.colliderect(self.flag):
-                self.win = True
-                self.Win()
-            else:
-                self.win = False
+        if self.rect.colliderect(self.flag):
+            self.win = True
+            self.Win()
         else:
-            self.rect.y += self.velocity * 2
-                
-            
-                
-                
+            self.win = False
+      
 
     def move_down(self):
         self.rect.y += self.velocity
-        if  not self.rect.colliderect(self.minus):
-            if self.rect.colliderect(self.flag):
-                self.win = True
-                self.Win()
-            else:
-                self.win = False
+        if self.rect.colliderect(self.flag):
+            self.win = True
+            self.Win()
         else:
-            self.move_up()
+            self.win = False
+      

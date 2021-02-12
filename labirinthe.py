@@ -42,26 +42,68 @@ while run:
         if event.type == pygame.QUIT:
             run = False
             pygame.quit()
+
+
         elif event.type == pygame.KEYDOWN:
+
             if event.key == pygame.K_UP:
-                if not player.rect.y - 50 <= 100:
-                    while not player.rect.y - 50 <= 100:
-                        player.move_up()
-                        continue
-            elif event.key == pygame.K_DOWN:
-                if not player.rect.y + 50 >= 600:
-                    while not player.rect.y + 50 >= 600:
+                while not player.rect.y == 100 or not pygame.sprite.spritecollide(player, minus.all_minus, False) :
+                    if not player.rect.y <= 100: 
+                        if not pygame.sprite.spritecollide(player, minus.all_minus, False):
+                               player.move_up()
+                               continue
+                        else:
+                            player.move_down()
+                            break
+                    else:
                         player.move_down()
-                        continue
+                        break
+
+
+            elif event.key == pygame.K_DOWN:
+                while not player.rect.y == 600 or not pygame.sprite.spritecollide(player, minus.all_minus, False) :
+                    if not player.rect.y >= 600:
+                        if not pygame.sprite.spritecollide(player, minus.all_minus, False):
+                               player.move_down()
+                               continue
+                        else:
+                            player.move_up()
+                            break
+                    else:
+                        player.move_up()
+                        break
+                        
+
+
             elif event.key == pygame.K_RIGHT:
-                if not player.rect.x + 50 >= 600:
-                    while not player.rect.x + 50 >= 600:
-                        player.move_right()
-                        continue
-            elif event.key == pygame.K_LEFT:
-                if not player.rect.x + 50 <= 150:
-                    while not player.rect.x + 50 <= 150:
+                while not player.rect.x == 600 or not pygame.sprite.spritecollide(player, minus.all_minus, False) :
+                    if not player.rect.x >= 600:
+                        if not pygame.sprite.spritecollide(player, minus.all_minus, False):
+                               player.move_right()
+                               continue
+                        else:
+                            player.move_left()
+                            break
+                    else:
                         player.move_left()
-                        continue 
+                        break
+
+
+            elif event.key == pygame.K_LEFT:
+                print("left")
+                while not player.rect.x == 50 or not pygame.sprite.spritecollide(player, minus.all_minus, False) :
+                    if not player.rect.x <= 50:
+                        if not pygame.sprite.spritecollide(player, minus.all_minus, False):
+                               player.move_left()
+                               continue
+                        else:
+                            player.move_right()
+                            break
+                    else:
+                        player.move_right()
+                        break
+                    
+
+
 
  
