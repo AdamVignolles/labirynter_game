@@ -1,4 +1,6 @@
 import pygame
+import json
+from niveau import Niveau
 
 class Minus(pygame.sprite.Sprite):
     def __init__(self, x=0, y=0):
@@ -10,11 +12,21 @@ class Minus(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.all_minus = pygame.sprite.Group()
+        
+
     def add_minus(self, x, y):
         self.all_minus.add(Minus(x, y))
 
-    def start(self, screen):
-        self.add_minus(250, 150 )
-        self.add_minus( 300, 550 )
+    def start(self, screen, player, niveau=1):
+
+        with open('level.json', 'r')as infile:
+            level= json.load(infile)
+
+
+        if level == 1:
+            Niveau.niveau1(self, player)
+        elif level == 2:
+            Niveau.niveau2(self, player)
+            
 
         self.all_minus.draw(screen)
